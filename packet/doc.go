@@ -27,7 +27,7 @@ package packet
 
 const (
 	// PacketSize is the expected size of a packet in bytes
-	PacketSize = 188
+	PacketSize = 192
 	// SyncByte is the expected value of the sync byte
 	SyncByte = 71 // 0x47 (0100 0111)
 	// NullPacketPid is the pid reserved for null packets
