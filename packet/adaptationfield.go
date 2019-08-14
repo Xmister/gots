@@ -28,6 +28,19 @@ import (
 	"github.com/Comcast/gots"
 )
 
+const (
+	PayloadFlag                   AdaptationFieldControlOptions = 1 // 10
+	AdaptationFieldFlag           AdaptationFieldControlOptions = 2 // 01
+	PayloadAndAdaptationFieldFlag AdaptationFieldControlOptions = 3 // 11
+)
+
+// AdaptationField is an optional part of the packet.
+type AdaptationField Packet
+
+// AdaptationFieldControlOptions is a set of constants for
+// selecting the adaptation field control.
+type AdaptationFieldControlOptions byte
+
 // NewPacket creates a new packet with a Null ID, sync byte, and with the adaptation field control set to payload only.
 // This function is error free.
 func NewAdaptationField() *AdaptationField {
@@ -165,6 +178,11 @@ func (af *AdaptationField) transportPrivateDataLength() int {
 	if !af.hasTransportPrivateData() {
 		return 0
 	}
+
+	if af.transportPrivateDataStart() >= PacketSize {
+		return 0
+	}
+
 	// cannot extend beyond adaptation field, number of bytes
 	// for field stored in transportPrivateDataLength
 	return 1 + int(af[af.transportPrivateDataStart()])
@@ -182,6 +200,11 @@ func (af *AdaptationField) adaptationExtensionLength() int {
 	if !af.hasAdaptationFieldExtension() {
 		return 0
 	}
+
+	if af.adaptationExtensionStart() >= PacketSize {
+		return 0
+	}
+
 	return 1 + int(af[af.adaptationExtensionStart()])
 }
 
@@ -203,7 +226,13 @@ func (af *AdaptationField) stuffingStart() int {
 // stuffingEnd returns the index where the stuffing bytes end
 // (first index without stuffing bytes) with respect to the start of the packet.
 func (af *AdaptationField) stuffingEnd() int {
-	return int(af[4]) + 5
+	stuffingEnd := int(af[4]) + 5
+
+	if stuffingEnd >= PacketSize {
+		return PacketSize - 1
+	}
+
+	return stuffingEnd
 }
 
 // setLength sets the length field of the adaptation field.
