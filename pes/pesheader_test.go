@@ -27,7 +27,7 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/Comcast/gots/packet"
+	"github.com/Xmister/gots/packet"
 )
 
 func parseHexString(h string) *packet.Packet {

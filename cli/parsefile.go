@@ -32,11 +32,11 @@ import (
 	"io"
 	"os"
 
-	"github.com/Comcast/gots/ebp"
-	"github.com/Comcast/gots/packet"
-	"github.com/Comcast/gots/packet/adaptationfield"
-	"github.com/Comcast/gots/psi"
-	"github.com/Comcast/gots/scte35"
+	"github.com/Xmister/gots/ebp"
+	"github.com/Xmister/gots/packet"
+	"github.com/Xmister/gots/packet/adaptationfield"
+	"github.com/Xmister/gots/psi"
+	"github.com/Xmister/gots/scte35"
 )
 
 // main parses a ts file that is provided with the -f flag

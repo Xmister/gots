@@ -28,8 +28,8 @@ import (
 	"errors"
 	"io"
 
-	"github.com/Comcast/gots"
-	"github.com/Comcast/gots/packet"
+	"github.com/Xmister/gots"
+	"github.com/Xmister/gots/packet"
 )
 
 const (
@@ -55,7 +55,7 @@ type pat []byte
 // If a 188 byte slice is passed in, NewPAT tries to help and
 // treats it as TS packet and builds a PAT from the packet payload.
 func NewPAT(patBytes []byte) (PAT, error) {
-	if len(patBytes) < 13 {
+	if len(patBytes) < 40 {
 		return nil, gots.ErrInvalidPATLength
 	}
 

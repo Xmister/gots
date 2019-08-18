@@ -25,7 +25,7 @@ SOFTWARE.
 package scte35
 
 import (
-	"github.com/Comcast/gots"
+	"github.com/Xmister/gots"
 )
 
 // SetUPIDType will set the type of the UPID

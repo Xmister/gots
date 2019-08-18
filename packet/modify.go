@@ -25,7 +25,7 @@ SOFTWARE.
 package packet
 
 import (
-	"github.com/Comcast/gots"
+	"github.com/Xmister/gots"
 )
 
 // flags that are reserved and should not be used.
