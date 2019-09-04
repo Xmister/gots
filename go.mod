@@ -1,3 +1,3 @@
-module github.com/Comcast/gots
+module github.com/Xmister/gots
 
-go 1.12
+go 1.13
